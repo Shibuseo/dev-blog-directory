@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Integrate Solutions — Web Design & Digital Marketing Agency</title>
+<meta name="description" content="Integrate Solutions is a creative web design and digital marketing agency. We build beautiful, high-performing websites and brand experiences.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pink:#ec407a;
+  --pink-deep:#c2185b;
+  --pink-soft:#fce4ec;
+  --pink-light:#fff0f5;
+  --dark:#1a1a2e;
+  --gray:#5a5a6e;
+  --gray-soft:#8a8aa0;
+  --bg:#ffffff;
+  --bg-alt:#fafafc;
+  --border:#eceef2;
+  --shadow-sm:0 4px 12px rgba(236,64,122,.08);
+  --shadow-md:0 12px 30px rgba(236,64,122,.15);
+  --shadow-lg:0 24px 60px rgba(236,64,122,.22);
+  --shadow-pink:0 20px 50px rgba(236,64,122,.35);
+  --gradient:linear-gradient(135deg,#ec407a,#c2185b);
+  --gradient-soft:linear-gradient(135deg,#ffeef5,#fff0f5);
+  --radius:14px;
+  --transition:.35s cubic-bezier(.4,0,.2,1);
+  --max:1240px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+  line-height:1.65;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+img{max-width:100%;display:block}
+.container{width:92%;max-width:var(--max);margin:0 auto}
+</style>
+
+<style>
+/* ============ NAVBAR ============ */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 0;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);transition:var(--transition);border-bottom:1px solid transparent}
+.navbar.scrolled{box-shadow:var(--shadow-sm);border-bottom-color:var(--border);padding:12px 0}
+.nav-wrap{display:flex;justify-content:space-between;align-items:center}
+.logo-link{display:flex;align-items:center;gap:10px}
+.logo-mark{width:46px;height:46px;border-radius:50%;background:var(--gradient);display:grid;place-items:center;color:#fff;font-weight:800;font-size:1.1rem;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.logo-mark::after{content:'';position:absolute;inset:3px;border-radius:50%;border:2px solid rgba(255,255,255,.4);pointer-events:none}
+.logo-text{font-size:1.35rem;font-weight:800;color:var(--dark);letter-spacing:-.5px}
+.logo-text span{color:var(--pink);font-weight:600;font-style:italic}
+.nav-links{display:flex;list-style:none;gap:32px}
+.nav-links a{font-weight:500;color:var(--gray);transition:var(--transition);position:relative;padding:6px 0}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--gradient);transition:var(--transition)}
+.nav-links a:hover,.nav-links a.active{color:var(--pink)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{background:var(--gradient);color:#fff;padding:11px 24px;border-radius:50px;font-weight:600;transition:var(--transition);box-shadow:var(--shadow-sm)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:var(--shadow-pink)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px}
+.hamburger span{width:26px;height:3px;background:var(--dark);border-radius:2px;transition:var(--transition)}
+.hamburger.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+/* ============ HERO ============ */
+.hero{min-height:100vh;padding:140px 0 80px;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#fff 0%,#fff5f8 100%)}
+.hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(236,64,122,.15),transparent 70%);top:-200px;right:-150px;animation:floatBlob 8s ease-in-out infinite}
+.hero::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(194,24,91,.1),transparent 70%);bottom:-100px;left:-100px;animation:floatBlob 10s ease-in-out infinite reverse}
+@keyframes floatBlob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-30px) scale(1.1)}}
+.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:60px;position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--pink-light);color:var(--pink-deep);padding:8px 16px;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:22px;border:1px solid rgba(236,64,122,.2)}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--pink);animation:pulseDot 1.5s infinite}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(236,64,122,.6)}50%{box-shadow:0 0 0 8px rgba(236,64,122,0)}}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.1;margin-bottom:22px;letter-spacing:-1px}
+.hero h1 .highlight{color:var(--pink);position:relative;display:inline-block}
+.hero h1 .highlight::after{content:'';position:absolute;left:0;bottom:5px;width:100%;height:12px;background:var(--pink-soft);z-index:-1;border-radius:4px}
+.hero p.lead{font-size:1.15rem;color:var(--gray);max-width:540px;margin-bottom:32px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:50px;font-weight:600;transition:var(--transition);cursor:pointer;border:2px solid transparent;font-size:.95rem}
+.btn-primary{background:var(--gradient);color:#fff;box-shadow:var(--shadow-sm)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:var(--shadow-pink)}
+.btn-outline{background:transparent;color:var(--dark);border-color:var(--dark)}
+.btn-outline:hover{background:var(--dark);color:#fff;transform:translateY(-3px)}
+.btn-full{width:100%;justify-content:center}
+.hero-trust{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.trust-avatars{display:flex}
+.trust-avatars .av{width:42px;height:42px;border-radius:50%;background:var(--gradient);border:3px solid #fff;display:grid;place-items:center;color:#fff;font-weight:700;font-size:.85rem;margin-left:-10px;box-shadow:var(--shadow-sm)}
+.trust-avatars .av:first-child{margin-left:0}
+.trust-text strong{display:block;color:var(--dark);font-size:.95rem}
+.trust-text span{color:var(--gray-soft);font-size:.85rem}
+</style>
+
+<style>
+.hero-visual{position:relative;height:520px}
+.hv-card{position:absolute;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);transition:var(--transition);overflow:hidden}
+.hv-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.hv-1{top:20px;left:20px;width:62%;height:300px;background:var(--gradient);color:#fff;padding:28px;display:flex;flex-direction:column;justify-content:space-between}
+.hv-1 .browser-dots{display:flex;gap:6px}
+.hv-1 .browser-dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4)}
+.hv-1 h3{font-size:1.5rem;margin-bottom:6px}
+.hv-1 p{opacity:.9;font-size:.92rem}
+.hv-1 .stats-row{display:flex;gap:20px}
+.hv-1 .stats-row div strong{display:block;font-size:1.4rem}
+.hv-1 .stats-row div span{font-size:.75rem;opacity:.85}
+.hv-2{bottom:30px;right:0;width:62%;height:200px;background:#fff;padding:24px;border:1px solid var(--border)}
+.hv-2 .chart{display:flex;align-items:flex-end;gap:8px;height:80px;margin-top:14px}
+.hv-2 .bar{flex:1;background:var(--gradient);border-radius:4px 4px 0 0;animation:growBar 1.5s ease-out forwards;transform-origin:bottom}
+.hv-2 h4{font-size:.95rem;color:var(--dark)}
+.hv-2 small{color:var(--gray-soft);font-size:.78rem}
+@keyframes growBar{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.hv-3{bottom:60px;left:0;width:170px;background:#fff;padding:18px;border:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.hv-3 .icon{width:38px;height:38px;border-radius:10px;background:var(--gradient);display:grid;place-items:center;color:#fff;font-size:1.1rem;flex-shrink:0}
+.hv-3 strong{display:block;font-size:.85rem}
+.hv-3 span{color:var(--gray-soft);font-size:.72rem}
+
+/* ============ SECTIONS ============ */
+.section{padding:100px 0;position:relative}
+.section-alt{background:var(--bg-alt)}
+.section-pink{background:linear-gradient(135deg,var(--pink-light),#fff)}
+.section-header{text-align:center;max-width:680px;margin:0 auto 60px}
+.eyebrow{display:inline-block;color:var(--pink);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;padding:6px 14px;background:var(--pink-light);border-radius:50px}
+.section-header h2{font-size:clamp(1.9rem,3.4vw,2.8rem);margin-bottom:16px;line-height:1.2;letter-spacing:-.5px}
+.section-header h2 .highlight{color:var(--pink)}
+.section-header p{color:var(--gray);font-size:1.05rem}
+
+/* ============ CLIENT LOGOS STRIP ============ */
+.logos-strip{padding:50px 0;background:var(--bg-alt);border-block:1px solid var(--border)}
+.logos-title{text-align:center;color:var(--gray-soft);font-size:.85rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px}
+.logos-row{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:50px}
+.client-logo{font-weight:700;color:var(--gray-soft);font-size:1.3rem;letter-spacing:-.5px;opacity:.7;transition:var(--transition);font-style:italic}
+.client-logo:hover{opacity:1;color:var(--pink);transform:scale(1.05)}
+
+/* ============ SERVICES (HOVER SHADOW BOXES) ============ */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+.service-card{background:#fff;padding:38px 30px;border-radius:var(--radius);border:1px solid var(--border);transition:var(--transition);position:relative;overflow:hidden;cursor:pointer}
+.service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:var(--gradient);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.service-card:hover{transform:translateY(-12px);box-shadow:var(--shadow-lg);border-color:transparent}
+.service-card:hover::before{transform:scaleX(1)}
+.service-icon{width:64px;height:64px;border-radius:16px;background:var(--pink-light);display:grid;place-items:center;font-size:1.8rem;margin-bottom:22px;transition:var(--transition);color:var(--pink)}
+.service-card:hover .service-icon{background:var(--gradient);color:#fff;transform:rotate(-8deg) scale(1.05)}
+.service-card h3{font-size:1.25rem;margin-bottom:12px;color:var(--dark)}
+.service-card p{color:var(--gray);font-size:.95rem;margin-bottom:18px}
+.service-link{color:var(--pink);font-weight:600;font-size:.9rem;display:inline-flex;align-items:center;gap:6px;transition:var(--transition)}
+.service-card:hover .service-link{gap:12px}
+
+/* ============ ABOUT / WHY ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center}
+.about-visual{position:relative;aspect-ratio:1/1;max-width:480px;margin:0 auto;width:100%}
+.about-visual .blob{position:absolute;inset:0;background:var(--gradient);border-radius:60% 40% 50% 50% / 50% 60% 40% 50%;animation:morph 8s ease-in-out infinite}
+@keyframes morph{0%,100%{border-radius:60% 40% 50% 50% / 50% 60% 40% 50%}50%{border-radius:40% 60% 60% 40% / 60% 40% 60% 40%}}
+.about-visual .stat-bubble{position:absolute;background:#fff;border-radius:var(--radius);padding:18px 22px;box-shadow:var(--shadow-md);transition:var(--transition);display:flex;align-items:center;gap:12px}
+.about-visual .stat-bubble:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.about-visual .sb-1{top:10%;right:-10%}
+.about-visual .sb-2{bottom:15%;left:-12%}
+.about-visual .sb-3{bottom:-5%;right:5%}
+.stat-bubble .icon-box{width:42px;height:42px;border-radius:10px;background:var(--pink-light);display:grid;place-items:center;color:var(--pink);font-size:1.2rem}
+.stat-bubble strong{display:block;font-size:1.2rem;color:var(--dark)}
+.stat-bubble span{color:var(--gray-soft);font-size:.78rem}
+.about-content h2{font-size:clamp(1.8rem,3vw,2.5rem);margin-bottom:18px;line-height:1.2;letter-spacing:-.5px}
+.about-content > p{color:var(--gray);margin-bottom:24px;font-size:1.02rem}
+.feature-list{list-style:none;margin:24px 0 32px;display:flex;flex-direction:column;gap:14px}
+.feature-list li{display:flex;align-items:center;gap:12px;color:var(--dark);font-weight:500}
+.feature-list .check{width:26px;height:26px;border-radius:50%;background:var(--gradient);display:grid;place-items:center;color:#fff;font-size:.8rem;flex-shrink:0;font-weight:700}
+</style>
+
+<style>
+/* ============ PROCESS / STEPS ============ */
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;position:relative}
+.step-card{background:#fff;padding:32px 26px;border-radius:var(--radius);border:1px solid var(--border);transition:var(--transition);position:relative}
+.step-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:var(--pink)}
+.step-num{position:absolute;top:-16px;right:24px;width:42px;height:42px;border-radius:50%;background:var(--gradient);color:#fff;display:grid;place-items:center;font-weight:800;font-size:1rem;box-shadow:var(--shadow-sm)}
+.step-card h3{margin-bottom:10px;font-size:1.15rem}
+.step-card p{color:var(--gray);font-size:.92rem}
+
+/* ============ PORTFOLIO ============ */
+.portfolio-filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:40px}
+.filter-btn{background:transparent;color:var(--gray);padding:10px 22px;border-radius:50px;border:1px solid var(--border);font-weight:500;transition:var(--transition);font-size:.9rem}
+.filter-btn:hover,.filter-btn.active{background:var(--gradient);color:#fff;border-color:transparent;box-shadow:var(--shadow-sm)}
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:26px}
+.project{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:var(--transition);cursor:pointer}
+.project:hover{transform:translateY(-10px);box-shadow:var(--shadow-lg);border-color:transparent}
+.project.hidden{display:none}
+.project-img{aspect-ratio:16/10;display:grid;place-items:center;color:#fff;font-weight:700;font-size:1.2rem;text-align:center;padding:20px;position:relative;overflow:hidden}
+.project-img::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(0,0,0,.2));opacity:0;transition:var(--transition)}
+.project:hover .project-img::after{opacity:1}
+.proj-tag{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.95);color:var(--pink-deep);padding:5px 12px;border-radius:50px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;z-index:2}
+.project-body{padding:22px}
+.project-body h4{margin-bottom:6px;font-size:1.15rem}
+.project-body p{color:var(--gray);font-size:.9rem;margin-bottom:14px}
+.project-meta{display:flex;justify-content:space-between;align-items:center;font-size:.82rem}
+.project-meta .tags span{display:inline-block;background:var(--pink-light);color:var(--pink-deep);padding:3px 10px;border-radius:50px;margin-right:5px;font-weight:500}
+.project-meta .arrow{color:var(--pink);font-weight:700;transition:var(--transition)}
+.project:hover .arrow{transform:translateX(6px)}
+.gradA{background:linear-gradient(135deg,#ec407a,#ad1457)}
+.gradB{background:linear-gradient(135deg,#f06292,#7b1fa2)}
+.gradC{background:linear-gradient(135deg,#ff80ab,#ec407a)}
+.gradD{background:linear-gradient(135deg,#c2185b,#1a1a2e)}
+.gradE{background:linear-gradient(135deg,#f48fb1,#ec407a)}
+.gradF{background:linear-gradient(135deg,#ec407a,#1a1a2e)}
+
+/* ============ STATS BAND ============ */
+.stats-band{padding:80px 0;background:var(--gradient);color:#fff;position:relative;overflow:hidden}
+.stats-band::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.08);top:-100px;left:10%}
+.stats-band::after{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.06);bottom:-50px;right:15%}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:30px;text-align:center;position:relative;z-index:2}
+.stat-block strong{display:block;font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:6px}
+.stat-block span{font-size:.95rem;opacity:.9}
+
+/* ============ TESTIMONIALS ============ */
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:26px}
+.t-card{background:#fff;padding:32px;border-radius:var(--radius);border:1px solid var(--border);transition:var(--transition);position:relative}
+.t-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:transparent}
+.t-card .quote-mark{font-size:3rem;color:var(--pink);line-height:.5;font-family:Georgia,serif;margin-bottom:10px}
+.t-stars{color:#ffc107;margin-bottom:14px;font-size:.95rem}
+.t-card p{color:var(--gray);font-style:italic;margin-bottom:22px;font-size:.97rem}
+.t-author{display:flex;align-items:center;gap:14px}
+.t-avatar{width:48px;height:48px;border-radius:50%;background:var(--gradient);display:grid;place-items:center;color:#fff;font-weight:700;font-size:.95rem}
+.t-author strong{display:block;color:var(--dark);font-size:.95rem}
+.t-author span{color:var(--gray-soft);font-size:.82rem}
+</style>
+
+<style>
+/* ============ PRICING ============ */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+.price-card{background:#fff;padding:38px 30px;border-radius:var(--radius);border:2px solid var(--border);transition:var(--transition);position:relative;text-align:center}
+.price-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-lg);border-color:var(--pink)}
+.price-card.featured{border-color:var(--pink);background:linear-gradient(180deg,#fff,#fff5f8)}
+.price-card.featured::before{content:'Most Popular';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gradient);color:#fff;padding:6px 18px;border-radius:50px;font-size:.78rem;font-weight:700;letter-spacing:1px}
+.price-card h3{font-size:1.3rem;margin-bottom:8px}
+.price-card .price{font-size:2.6rem;font-weight:800;color:var(--pink);margin:14px 0}
+.price-card .price small{font-size:1rem;color:var(--gray-soft);font-weight:500}
+.price-card .price-desc{color:var(--gray);font-size:.9rem;margin-bottom:24px}
+.price-card ul{list-style:none;text-align:left;margin-bottom:28px}
+.price-card li{padding:8px 0;color:var(--gray);font-size:.93rem;border-bottom:1px dashed var(--border);display:flex;align-items:center;gap:8px}
+.price-card li::before{content:'✓';color:var(--pink);font-weight:700}
+
+/* ============ FAQ ============ */
+.faq-list{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.faq-item{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:var(--transition)}
+.faq-item:hover{box-shadow:var(--shadow-md)}
+.faq-item.open{border-color:var(--pink);box-shadow:var(--shadow-md)}
+.faq-q{width:100%;text-align:left;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--dark);font-size:1rem;font-family:inherit}
+.faq-q .icon{width:28px;height:28px;border-radius:50%;background:var(--pink-light);color:var(--pink);display:grid;place-items:center;font-weight:800;flex-shrink:0;transition:var(--transition)}
+.faq-item.open .faq-q .icon{background:var(--gradient);color:#fff;transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;color:var(--gray);font-size:.95rem;padding:0 24px}
+.faq-item.open .faq-a{max-height:300px;padding:0 24px 22px}
+
+/* ============ CTA BAND ============ */
+.cta-band{background:var(--dark);color:#fff;padding:80px 0;text-align:center;position:relative;overflow:hidden;border-radius:24px;margin:60px auto;max-width:calc(var(--max) - 40px)}
+.cta-band::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(236,64,122,.4),transparent 70%);top:-200px;right:-100px}
+.cta-band::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(236,64,122,.25),transparent 70%);bottom:-150px;left:-100px}
+.cta-band .container{position:relative;z-index:2}
+.cta-band h2{font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:16px}
+.cta-band h2 .highlight{color:var(--pink)}
+.cta-band p{opacity:.85;margin-bottom:28px;max-width:560px;margin-inline:auto}
+.cta-band .btn-primary{background:var(--gradient)}
+.cta-band .btn-outline{color:#fff;border-color:rgba(255,255,255,.3)}
+.cta-band .btn-outline:hover{background:#fff;color:var(--dark);border-color:#fff}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:40px}
+.contact-info{background:var(--dark);color:#fff;padding:44px;border-radius:var(--radius);position:relative;overflow:hidden}
+.contact-info::before{content:'';position:absolute;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(236,64,122,.3),transparent 70%);top:-80px;right:-80px}
+.contact-info > *{position:relative;z-index:2}
+.contact-info h3{font-size:1.5rem;margin-bottom:12px}
+.contact-info > p{opacity:.85;margin-bottom:30px;font-size:.95rem}
+.info-item{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start}
+.info-icon{width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,.12);display:grid;place-items:center;flex-shrink:0;font-size:1.05rem}
+.info-item strong{display:block;font-size:.95rem;margin-bottom:2px}
+.info-item span{opacity:.78;font-size:.88rem}
+.socials-row{display:flex;gap:10px;margin-top:30px}
+.socials-row a{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-size:.78rem;font-weight:700;transition:var(--transition)}
+.socials-row a:hover{background:var(--pink);transform:translateY(-3px)}
+.contact-form{background:#fff;padding:44px;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-sm)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;margin-bottom:6px;font-weight:600;font-size:.88rem;color:var(--dark)}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;font-family:inherit;font-size:.95rem;color:var(--dark);background:var(--bg-alt);transition:var(--transition)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--pink);background:#fff;box-shadow:0 0 0 3px rgba(236,64,122,.12)}
+.form-group textarea{resize:vertical;min-height:110px}
+.form-feedback{margin-top:14px;padding:12px 16px;border-radius:10px;font-size:.9rem;display:none}
+.form-feedback.success{display:block;background:#d1fae5;color:#065f46;border:1px solid #a7f3d0}
+.form-feedback.error{display:block;background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
+</style>
+
+<style>
+/* ============ FOOTER ============ */
+footer{background:var(--dark);color:#cdd2dc;padding:70px 0 24px}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px}
+.footer-brand p{font-size:.92rem;opacity:.78;margin:14px 0 20px;max-width:340px}
+.footer-brand .socials-row a{background:rgba(255,255,255,.08)}
+footer h4{color:#fff;font-size:1rem;margin-bottom:18px}
+footer ul{list-style:none}
+footer li{margin-bottom:10px}
+footer a{font-size:.9rem;opacity:.78;transition:var(--transition)}
+footer a:hover{opacity:1;color:var(--pink);padding-left:4px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;text-align:center;font-size:.85rem;opacity:.7}
+
+/* ============ SCROLL TOP ============ */
+.scroll-top{position:fixed;bottom:30px;right:30px;width:50px;height:50px;border-radius:50%;background:var(--gradient);color:#fff;display:grid;place-items:center;font-size:1.3rem;box-shadow:var(--shadow-md);opacity:0;visibility:hidden;transition:var(--transition);z-index:999;font-weight:700}
+.scroll-top.visible{opacity:1;visibility:visible}
+.scroll-top:hover{transform:translateY(-4px);box-shadow:var(--shadow-pink)}
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal.delay-1{transition-delay:.1s}
+.reveal.delay-2{transition-delay:.2s}
+.reveal.delay-3{transition-delay:.3s}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:980px){
+  .hero-grid,.about-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
+  .hero-visual{height:420px;margin-top:30px}
+  .form-row{grid-template-columns:1fr}
+  .price-card.featured{transform:none}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .hamburger{display:flex}
+  .nav-links{position:fixed;top:70px;right:-100%;flex-direction:column;background:#fff;width:78%;max-width:300px;height:calc(100vh - 70px);padding:32px 24px;box-shadow:var(--shadow-lg);transition:right .35s ease;gap:18px}
+  .nav-links.open{right:0}
+  .nav-cta{display:none}
+  .section{padding:70px 0}
+  .hero{padding-top:120px}
+  .about-visual .stat-bubble{position:relative;margin:10px}
+  .about-visual{aspect-ratio:auto;display:flex;flex-direction:column;align-items:center}
+  .about-visual .blob{display:none}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-wrap">
+    <a href="#home" class="logo-link">
+      <span class="logo-mark">iS</span>
+      <span class="logo-text">integrate <span>Solutions</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Our Work</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Free Consultation</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text reveal">
+        <span class="hero-badge"><span class="dot"></span> Web Design & Digital Marketing Agency</span>
+        <h1>We build websites that <span class="highlight">grow your business</span>.</h1>
+        <p class="lead">Integrate Solutions designs, develops and markets stunning websites that convert visitors into customers. From bespoke design to SEO and ongoing support — we are your end-to-end digital partner.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Get a Free Quote →</a>
+          <a href="#work" class="btn btn-outline">View Our Work</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-avatars">
+            <div class="av">JD</div><div class="av">SM</div><div class="av">AK</div><div class="av">+</div>
+          </div>
+          <div class="trust-text">
+            <strong>120+ happy clients</strong>
+            <span>Trusted by brands across the UK & beyond</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual reveal delay-1">
+        <div class="hv-card hv-1">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div>
+            <h3>Beautiful Websites</h3>
+            <p>Pixel-perfect designs that load fast and rank high.</p>
+          </div>
+          <div class="stats-row">
+            <div><strong>98</strong><span>PageSpeed</span></div>
+            <div><strong>4.9★</strong><span>Client Rating</span></div>
+          </div>
+        </div>
+        <div class="hv-card hv-2">
+          <h4>Traffic Growth</h4>
+          <small>Last 6 months</small>
+          <div class="chart">
+            <div class="bar" style="height:30%;animation-delay:.1s"></div>
+            <div class="bar" style="height:45%;animation-delay:.2s"></div>
+            <div class="bar" style="height:55%;animation-delay:.3s"></div>
+            <div class="bar" style="height:40%;animation-delay:.4s"></div>
+            <div class="bar" style="height:75%;animation-delay:.5s"></div>
+            <div class="bar" style="height:90%;animation-delay:.6s"></div>
+            <div class="bar" style="height:100%;animation-delay:.7s"></div>
+          </div>
+        </div>
+        <div class="hv-card hv-3">
+          <div class="icon">★</div>
+          <div>
+            <strong>SEO Ready</strong>
+            <span>On-page optimised</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLIENT LOGOS ============ -->
+<div class="logos-strip">
+  <div class="container">
+    <p class="logos-title">Trusted by ambitious brands</p>
+    <div class="logos-row">
+      <div class="client-logo">Lumina</div>
+      <div class="client-logo">Verdant.</div>
+      <div class="client-logo">Northbeat</div>
+      <div class="client-logo">Cedar &amp; Co</div>
+      <div class="client-logo">PulseLab</div>
+      <div class="client-logo">Maven</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============ SERVICES ============ -->
+<section class="section section-alt" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">What We Do</span>
+      <h2>End-to-end digital services <span class="highlight">under one roof</span></h2>
+      <p>From the first wireframe to the final launch and beyond — every service you need to build a digital presence that drives results.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🎨</div>
+        <h3>Web Design</h3>
+        <p>Custom, mobile-first designs crafted around your brand and your customers — with conversion baked in from the start.</p>
+        <a href="#contact" class="service-link">Learn more <span>→</span></a>
+      </div>
+      <div class="service-card reveal delay-1">
+        <div class="service-icon">⚙️</div>
+        <h3>Web Development</h3>
+        <p>Fast, secure, scalable websites built on WordPress, Shopify, or fully bespoke stacks — all clean, future-proof code.</p>
+        <a href="#contact" class="service-link">Learn more <span>→</span></a>
+      </div>
+      <div class="service-card reveal delay-2">
+        <div class="service-icon">📈</div>
+        <h3>SEO &amp; Marketing</h3>
+        <p>Climb the rankings and stay there. On-page SEO, content strategy, and ongoing optimisation that grows organic traffic.</p>
+        <a href="#contact" class="service-link">Learn more <span>→</span></a>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🛒</div>
+        <h3>E-Commerce</h3>
+        <p>Online stores that turn browsers into buyers — Shopify, WooCommerce and headless setups optimised for revenue.</p>
+        <a href="#contact" class="service-link">Learn more <span>→</span></a>
+      </div>
+      <div class="service-card reveal delay-1">
+        <div class="service-icon">✨</div>
+        <h3>Branding &amp; Identity</h3>
+        <p>Logos, brand guidelines, colour systems and visual identities that make your business instantly recognisable.</p>
+        <a href="#contact" class="service-link">Learn more <span>→</span></a>
+      </div>
+      <div class="service-card reveal delay-2">
+        <div class="service-icon">🛠️</div>
+        <h3>Care &amp; Support</h3>
+        <p>Hosting, security updates, performance monitoring and content edits — we keep your site healthy 24/7.</p>
+        <a href="#contact" class="service-link">Learn more <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT / WHY ============ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="blob"></div>
+        <div class="stat-bubble sb-1"><div class="icon-box">⚡</div><div><strong>2× Faster</strong><span>Average load time</span></div></div>
+        <div class="stat-bubble sb-2"><div class="icon-box">📊</div><div><strong>+180%</strong><span>Organic traffic</span></div></div>
+        <div class="stat-bubble sb-3"><div class="icon-box">💬</div><div><strong>4.9 / 5</strong><span>Client satisfaction</span></div></div>
+      </div>
+      <div class="about-content reveal delay-1">
+        <span class="eyebrow">Why Integrate Solutions</span>
+        <h2>A team obsessed with <span style="color:var(--pink)">your growth</span>.</h2>
+        <p>We are designers, developers and strategists who believe great websites do more than just look good — they earn trust, generate leads, and drive measurable business outcomes.</p>
+        <ul class="feature-list">
+          <li><span class="check">✓</span> Bespoke design — never templates</li>
+          <li><span class="check">✓</span> SEO &amp; performance built-in from day one</li>
+          <li><span class="check">✓</span> Transparent process and fixed pricing</li>
+          <li><span class="check">✓</span> Ongoing support after launch</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Start Your Project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ PROCESS ============ -->
+<section class="section section-pink" id="process">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">How We Work</span>
+      <h2>A simple, proven <span class="highlight">4-step process</span></h2>
+      <p>No surprises. No jargon. Just clear milestones and constant communication from kick-off to launch.</p>
+    </div>
+    <div class="process-grid">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <h3>Discover</h3>
+        <p>We learn about your business, audience and goals through a detailed discovery workshop.</p>
+      </div>
+      <div class="step-card reveal delay-1">
+        <div class="step-num">02</div>
+        <h3>Design</h3>
+        <p>Wireframes and visual mockups crafted around your brand, with feedback rounds built in.</p>
+      </div>
+      <div class="step-card reveal delay-2">
+        <div class="step-num">03</div>
+        <h3>Develop</h3>
+        <p>Clean, fast, responsive code — fully tested across devices, browsers and accessibility standards.</p>
+      </div>
+      <div class="step-card reveal delay-3">
+        <div class="step-num">04</div>
+        <h3>Launch &amp; Grow</h3>
+        <p>We handle deployment, train your team, then continue to optimise as your business scales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<section class="section" id="work">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Our Work</span>
+      <h2>Recent projects we are <span class="highlight">proud of</span></h2>
+      <p>A small selection of websites and brands we have delivered for clients across the UK and beyond.</p>
+    </div>
+    <div class="portfolio-filters reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="web">Web Design</button>
+      <button class="filter-btn" data-filter="ecom">E-Commerce</button>
+      <button class="filter-btn" data-filter="brand">Branding</button>
+      <button class="filter-btn" data-filter="seo">SEO</button>
+    </div>
+    <div class="portfolio-grid">
+      <div class="project reveal" data-cat="web">
+        <div class="project-img gradA"><span class="proj-tag">Web Design</span>Lumina Studio</div>
+        <div class="project-body">
+          <h4>Lumina Creative Studio</h4>
+          <p>Full website redesign for a London-based creative studio.</p>
+          <div class="project-meta"><div class="tags"><span>Figma</span><span>WordPress</span></div><span class="arrow">→</span></div>
+        </div>
+      </div>
+      <div class="project reveal delay-1" data-cat="ecom">
+        <div class="project-img gradB"><span class="proj-tag">E-Commerce</span>Verdant Skincare</div>
+        <div class="project-body">
+          <h4>Verdant Skincare Shop</h4>
+          <p>Shopify store with custom checkout and subscriptions.</p>
+          <div class="project-meta"><div class="tags"><span>Shopify</span><span>Liquid</span></div><span class="arrow">→</span></div>
+        </div>
+      </div>
+      <div class="project reveal delay-2" data-cat="brand">
+        <div class="project-img gradC"><span class="proj-tag">Branding</span>Northbeat Records</div>
+        <div class="project-body">
+          <h4>Northbeat Records</h4>
+          <p>Logo, identity system and brand guidelines.</p>
+          <div class="project-meta"><div class="tags"><span>Identity</span><span>Print</span></div><span class="arrow">→</span></div>
+        </div>
+      </div>
+      <div class="project reveal" data-cat="seo">
+        <div class="project-img gradD"><span class="proj-tag">SEO</span>Cedar &amp; Co Law</div>
+        <div class="project-body">
+          <h4>Cedar &amp; Co Solicitors</h4>
+          <p>SEO campaign that grew organic traffic 180% in 9 months.</p>
+          <div class="project-meta"><div class="tags"><span>SEO</span><span>Content</span></div><span class="arrow">→</span></div>
+        </div>
+      </div>
+      <div class="project reveal delay-1" data-cat="web">
+        <div class="project-img gradE"><span class="proj-tag">Web Design</span>PulseLab Health</div>
+        <div class="project-body">
+          <h4>PulseLab Health</h4>
+          <p>Booking platform UI/UX and Webflow build for a clinic group.</p>
+          <div class="project-meta"><div class="tags"><span>Webflow</span><span>UX</span></div><span class="arrow">→</span></div>
+        </div>
+      </div>
+      <div class="project reveal delay-2" data-cat="ecom">
+        <div class="project-img gradF"><span class="proj-tag">E-Commerce</span>Maven Boutique</div>
+        <div class="project-body">
+          <h4>Maven Fashion Boutique</h4>
+          <p>WooCommerce migration with 3× faster page speeds.</p>
+          <div class="project-meta"><div class="tags"><span>WooCommerce</span><span>Speed</span></div><span class="arrow">→</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ STATS BAND ============ -->
+<section class="stats-band">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-block reveal"><strong data-target="120">0</strong><span>Projects Delivered</span></div>
+      <div class="stat-block reveal delay-1"><strong data-target="98">0</strong><span>Avg PageSpeed Score</span></div>
+      <div class="stat-block reveal delay-2"><strong data-target="180">0</strong><span>% Traffic Growth</span></div>
+      <div class="stat-block reveal delay-3"><strong data-target="12">0</strong><span>Years Experience</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section section-alt" id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Client Stories</span>
+      <h2>What our clients <span class="highlight">are saying</span></h2>
+      <p>Real feedback from real businesses we have helped grow online.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="t-card reveal">
+        <div class="quote-mark">"</div>
+        <div class="t-stars">★★★★★</div>
+        <p>The Integrate Solutions team rebuilt our site from scratch and we saw enquiries double within two months. Their attention to detail and SEO know-how is unmatched.</p>
+        <div class="t-author"><div class="t-avatar">EM</div><div><strong>Emma Mitchell</strong><span>Founder, Lumina Studio</span></div></div>
+      </div>
+      <div class="t-card reveal delay-1">
+        <div class="quote-mark">"</div>
+        <div class="t-stars">★★★★★</div>
+        <p>From design to launch the process was effortless. They listened, delivered on time and our new Shopify store has lifted revenue by 40% year on year.</p>
+        <div class="t-author"><div class="t-avatar">RK</div><div><strong>Rohan Khatri</strong><span>Director, Verdant Skincare</span></div></div>
+      </div>
+      <div class="t-card reveal delay-2">
+        <div class="quote-mark">"</div>
+        <div class="t-stars">★★★★★</div>
+        <p>Beautiful design, lightning-fast site, and ongoing SEO that actually moves the needle. We treat them as part of our team, not just an agency.</p>
+        <div class="t-author"><div class="t-avatar">SC</div><div><strong>Sarah Coleman</strong><span>Partner, Cedar &amp; Co Solicitors</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Pricing Plans</span>
+      <h2>Transparent pricing, <span class="highlight">no surprises</span></h2>
+      <p>Choose a package that fits your business — or talk to us about a custom scope.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <h3>Starter</h3>
+        <div class="price">£995<small>/project</small></div>
+        <p class="price-desc">Perfect for new businesses needing a sharp online presence.</p>
+        <ul>
+          <li>Up to 5-page website</li>
+          <li>Mobile responsive design</li>
+          <li>Basic on-page SEO</li>
+          <li>Contact form &amp; Google Maps</li>
+          <li>2 weeks delivery</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline btn-full">Get Started</a>
+      </div>
+      <div class="price-card featured reveal delay-1">
+        <h3>Business</h3>
+        <div class="price">£2,495<small>/project</small></div>
+        <p class="price-desc">Our most popular package — ideal for growing businesses.</p>
+        <ul>
+          <li>Up to 12-page website</li>
+          <li>Custom design &amp; animations</li>
+          <li>Advanced SEO setup</li>
+          <li>Blog &amp; CMS training</li>
+          <li>3 months free support</li>
+          <li>Speed optimisation</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary btn-full">Choose Business</a>
+      </div>
+      <div class="price-card reveal delay-2">
+        <h3>Enterprise</h3>
+        <div class="price">Custom</div>
+        <p class="price-desc">Bespoke solutions for ambitious brands and complex projects.</p>
+        <ul>
+          <li>Unlimited pages</li>
+          <li>E-commerce / web app</li>
+          <li>Full SEO &amp; content strategy</li>
+          <li>Dedicated project manager</li>
+          <li>12 months priority support</li>
+          <li>Custom integrations</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline btn-full">Talk to Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ FAQ ============ -->
+<section class="section section-alt" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2>Frequently asked <span class="highlight">questions</span></h2>
+      <p>Everything you need to know before getting started. Can't find your answer? Just ask us.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">How long does a typical website take to build? <span class="icon">+</span></button>
+        <div class="faq-a"><p>Most projects take between 3 and 8 weeks depending on scope. A 5-page brochure site is usually 3 weeks, while bespoke e-commerce or custom builds can take 6 to 8 weeks.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you offer ongoing support after launch? <span class="icon">+</span></button>
+        <div class="faq-a"><p>Yes — every project includes a free support period after launch, and we offer affordable monthly care plans covering hosting, security, updates and content edits.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Will my website be SEO friendly? <span class="icon">+</span></button>
+        <div class="faq-a"><p>Absolutely. Every site we build follows on-page SEO best practices: clean code, fast load times, semantic markup, structured data and mobile-first design.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I update the website myself once it is live? <span class="icon">+</span></button>
+        <div class="faq-a"><p>Yes. We hand over a friendly CMS (usually WordPress or Shopify) and provide training so you and your team can edit content confidently.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you work with clients outside the UK? <span class="icon">+</span></button>
+        <div class="faq-a"><p>Yes — we work with clients across Europe, the US and Asia. All meetings happen on Zoom and we adapt to your timezone.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<div class="cta-band reveal">
+  <div class="container">
+    <h2>Ready to <span class="highlight">grow your business</span> online?</h2>
+    <p>Book a free 30-minute consultation. We will review your goals and show you exactly how we can help.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="#contact" class="btn btn-primary">Book Free Consultation →</a>
+      <a href="#work" class="btn btn-outline">See Our Work</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Get In Touch</span>
+      <h2>Let's build something <span class="highlight">amazing together</span></h2>
+      <p>Tell us about your project and we will reply within 1 business day with next steps.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Talk to a human</h3>
+        <p>Prefer email or phone? We are available Monday to Friday, 9am to 6pm GMT.</p>
+        <div class="info-item"><div class="info-icon">📍</div><div><strong>Studio</strong><span>14 Old Street, London EC1V 9HL, United Kingdom</span></div></div>
+        <div class="info-item"><div class="info-icon">✉️</div><div><strong>Email</strong><span>hello@integratesolutions.co.uk</span></div></div>
+        <div class="info-item"><div class="info-icon">📞</div><div><strong>Phone</strong><span>+44 (0)20 7946 0000</span></div></div>
+        <div class="info-item"><div class="info-icon">⏰</div><div><strong>Hours</strong><span>Mon – Fri · 9:00 AM – 6:00 PM GMT</span></div></div>
+        <div class="socials-row">
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="LinkedIn">LI</a>
+          <a href="#" aria-label="Twitter">X</a>
+        </div>
+      </div>
+      <form class="contact-form reveal delay-1" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group"><label for="name">Full Name *</label><input type="text" id="name" placeholder="Jane Doe" required></div>
+          <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" placeholder="jane@brand.com" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="phone">Phone</label><input type="tel" id="phone" placeholder="+44 7700 900000"></div>
+          <div class="form-group"><label for="service">Service Required *</label>
+            <select id="service" required>
+              <option value="">Select a service</option>
+              <option>Web Design</option>
+              <option>Web Development</option>
+              <option>E-Commerce Store</option>
+              <option>SEO &amp; Marketing</option>
+              <option>Branding</option>
+              <option>Care &amp; Support</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label for="budget">Project Budget</label>
+          <select id="budget">
+            <option value="">Select budget</option>
+            <option>Up to £2,000</option>
+            <option>£2,000 – £5,000</option>
+            <option>£5,000 – £15,000</option>
+            <option>£15,000+</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="message">Tell us about your project *</label><textarea id="message" rows="5" placeholder="A few sentences about your business, goals and timeline..." required></textarea></div>
+        <button type="submit" class="btn btn-primary btn-full">Send Message →</button>
+        <div class="form-feedback" id="formFeedback"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="logo-link">
+          <span class="logo-mark" style="box-shadow:none">iS</span>
+          <span class="logo-text" style="color:#fff">integrate <span>Solutions</span></span>
+        </a>
+        <p>A creative web design and digital marketing agency helping ambitious businesses build remarkable digital experiences since 2013.</p>
+        <div class="socials-row">
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="LinkedIn">LI</a>
+          <a href="#" aria-label="Twitter">X</a>
+        </div>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Web Design</a></li>
+          <li><a href="#services">Web Development</a></li>
+          <li><a href="#services">E-Commerce</a></li>
+          <li><a href="#services">SEO &amp; Marketing</a></li>
+          <li><a href="#services">Branding</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#work">Our Work</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> Integrate Solutions Ltd. All rights reserved. Designed &amp; built with love in London.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SCROLL TO TOP ============ -->
+<button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
+
+
+<script>
+/* ============ NAVBAR + SCROLL TOP ============ */
+const navbar = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+const scrollTopBtn = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 30);
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+  highlightActiveLink();
+});
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+}));
+scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ============ ACTIVE NAV LINK ON SCROLL ============ */
+const sections = document.querySelectorAll('section[id]');
+function highlightActiveLink() {
+  const y = window.scrollY + 140;
+  sections.forEach(sec => {
+    const link = document.querySelector(`.nav-links a[href="#${sec.id}"]`);
+    if (!link) return;
+    if (y >= sec.offsetTop && y < sec.offsetTop + sec.offsetHeight) {
+      document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    }
+  });
+}
+
+/* ============ REVEAL ON SCROLL ============ */
+const revealEls = document.querySelectorAll('.reveal');
+const revealIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealIO.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+revealEls.forEach(el => revealIO.observe(el));
+
+/* ============ ANIMATED COUNTERS ============ */
+const counters = document.querySelectorAll('.stat-block strong');
+const counterIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = +el.dataset.target;
+    let current = 0;
+    const step = Math.max(1, Math.ceil(target / 60));
+    (function tick() {
+      current += step;
+      if (current >= target) {
+        el.textContent = target + '+';
+      } else {
+        el.textContent = current;
+        requestAnimationFrame(tick);
+      }
+    })();
+    counterIO.unobserve(el);
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterIO.observe(c));
+
+/* ============ PORTFOLIO FILTER ============ */
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projects = document.querySelectorAll('.project');
+filterBtns.forEach(btn => btn.addEventListener('click', () => {
+  filterBtns.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const f = btn.dataset.filter;
+  projects.forEach(p => p.classList.toggle('hidden', f !== 'all' && p.dataset.cat !== f));
+}));
+
+/* ============ FAQ ACCORDION ============ */
+document.querySelectorAll('.faq-item').forEach(item => {
+  const q = item.querySelector('.faq-q');
+  q.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+/* ============ CONTACT FORM VALIDATION ============ */
+const form = document.getElementById('contactForm');
+const fb = document.getElementById('formFeedback');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  fb.className = 'form-feedback';
+  const name = form.querySelector('#name').value.trim();
+  const email = form.querySelector('#email').value.trim();
+  const service = form.querySelector('#service').value;
+  const message = form.querySelector('#message').value.trim();
+  if (!name || !email || !service || !message) {
+    fb.classList.add('error');
+    fb.textContent = 'Please fill in all required fields marked with *.';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    fb.classList.add('error');
+    fb.textContent = 'Please enter a valid email address.';
+    return;
+  }
+  fb.classList.add('success');
+  fb.textContent = `Thanks ${name}! Your message has been received. We will reply within 1 business day.`;
+  form.reset();
+});
+
+/* ============ FOOTER YEAR ============ */
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
